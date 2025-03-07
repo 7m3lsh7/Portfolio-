@@ -8,7 +8,7 @@
       event.preventDefault();
 
       let thisForm = this;
-      let action = thisForm.getAttribute('action');
+      let action = thisForm.getAttribute('action') + "?nojson"; // ✅ إضافة "?nojson" لمنع إعادة التوجيه
       let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
 
       if (!action) {
@@ -25,15 +25,16 @@
       fetch(action, {
         method: 'POST',
         body: formData,
-        headers: { "Accept": "application/json" } // Formspree يحتاج هذا الهيدر
+        headers: { "Accept": "application/json" } 
       })
-        .then(response => {
+        .then(response => response.json()) // ✅ قراءة الاستجابة كـ JSON
+        .then(data => {
           thisForm.querySelector('.loading').classList.remove('d-block');
-          if (response.ok) {
+          if (data.ok) { // ✅ التحقق من نجاح الإرسال
             thisForm.querySelector('.sent-message').classList.add('d-block');
             thisForm.reset();
           } else {
-            throw new Error("Form submission failed");
+            throw new Error(data.error || "Form submission failed");
           }
         })
         .catch((error) => {

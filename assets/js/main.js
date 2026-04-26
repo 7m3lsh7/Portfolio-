@@ -80,13 +80,15 @@
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
+  }
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
@@ -169,36 +171,50 @@
   });
 
   /**
-   * Init isotope layout and filters
+   * Theme Toggle
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
-
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
+  const themeToggle = document.querySelector('#theme-toggle');
+  if (themeToggle) {
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    themeToggle.addEventListener('click', () => {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
     });
+  }
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
+  /**
+   * Language Toggle
+   */
+  const langToggle = document.querySelector('#lang-toggle');
+  if (langToggle) {
+    const currentLang = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('data-lang', currentLang);
+    document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+
+    langToggle.addEventListener('click', () => {
+      const lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'ar' : 'en';
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      localStorage.setItem('lang', lang);
     });
+  }
 
+  /**
+   * Scroll Progress Bar
+   */
+  window.addEventListener('scroll', () => {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    if (scrollProgress) {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollCurrent = window.scrollY;
+      const width = (scrollCurrent / scrollTotal) * 100;
+      scrollProgress.style.width = width + '%';
+    }
   });
 
-})();
+
+
+})();

@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Cairo:wght@200..900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
   ======================================================== -->
 </head>
 
-<body class="index-page">
+<body class="index-page"><div class="scroll-progress"></div>
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -47,11 +47,18 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="resume.html">Resume</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" class="active"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a></li>
+          <li><a href="about.html"><span class="lang-en">About</span><span class="lang-ar">عني</span></a></li>
+          <li><a href="resume.html"><span class="lang-en">Resume</span><span class="lang-ar">السيرة الذاتية</span></a></li>
+          <li><a href="portfolio.html"><span class="lang-en">Portfolio</span><span class="lang-ar">المشاريع</span></a></li>
+          <li><a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ar">اتصل بي</span></a></li>
+          <li class="nav-toggles ms-lg-4">
+            <button id="theme-toggle" class="btn btn-link nav-link p-0 me-3" title="Toggle Theme"><i class="bi bi-moon-stars"></i></button>
+            <button id="lang-toggle" class="btn btn-link nav-link p-0" title="Toggle Language">
+              <span class="lang-en">AR</span>
+              <span class="lang-ar">EN</span>
+            </button>
+          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -64,37 +71,94 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/20250302_182006.jpg" alt="" data-aos="fade-in">
+      <img src="assets/img/BG.jpg" alt="" data-aos="fade-in">
 
       <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <h2>Felopater Remon</h2>
-        <p>I'm <span class="typed" data-typed-items="Developer, UI/UX Designer, Full-Stack Web Developer, Back-End Developer, Front-End Developer">Developer</span><span class="typed-cursor typed-cursor--blink"></span></p>
-        <div class="social-links">
+        <h2 class="display-1 fw-bold">Felopater Remon</h2>
+        <p class="fs-4 mb-4">
+          <span class="lang-en">A software enthusiast and student passionate about web development, UI/UX design, and problem-solving.</span>
+          <span class="lang-ar">طالب وعاشق للبرمجيات شغوف بتطوير الويب وتصميم واجهة المستخدم وحل المشكلات.</span>
+        </p>
+        <p class="fs-5 mb-4">
+          <span class="lang-en">Specializing in </span><span class="lang-ar">متخصص في </span>
+          <span class="typed" data-typed-items="ASP.NET Core, React, C#, SQL Server, UI/UX Design">ASP.NET Core</span><span class="typed-cursor typed-cursor--blink"></span>
+        </p>
+        <div class="social-links mb-4">
+          <a href="https://github.com/7m3lsh7"><i class="bi bi-github"></i></a>
           <a href="https://www.linkedin.com/in/felopater-remon-3a8631354"><i class="bi bi-linkedin"></i></a>
+          <a href="mailto:felopater.remon2020@gmail.com"><i class="bi bi-envelope"></i></a>
         </div>
-        <!-- CV Buttons Added Here -->
-        <div class="cv-buttons mt-3">
-          <a href="assets/Felopater Remon cv.pdf" download class="btn btn-primary me-2">Download CV</a>
-          <a href="assets/Felopater Remon cv.pdf" target="_blank" class="btn btn-outline-light">Preview CV</a>
+        <!-- CV Buttons -->
+        <div class="cv-buttons mt-4">
+          <a href="assets/Felopater Remon.pdf" download class="btn btn-accent btn-lg px-4 me-3">
+            <span class="lang-en">Download CV</span><span class="lang-ar">تحميل السيرة الذاتية</span>
+          </a>
+          <a href="assets/Felopater Remon.pdf" target="_blank" class="btn btn-outline-light btn-lg px-4">
+            <span class="lang-en">Preview CV</span><span class="lang-ar">عرض السيرة الذاتية</span>
+          </a>
         </div>
       </div>
 
     </section><!-- /Hero Section -->
+
+    <!-- Featured Projects Section -->
+    <section id="featured-projects" class="section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2><span class="lang-en">Recent Work</span><span class="lang-ar">أعمالي الأخيرة</span></h2>
+          <div>
+            <span class="lang-en">Featured Projects</span>
+            <span class="lang-ar">مشاريع مختارة</span>
+          </div>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up">
+            <div class="skill-card p-0 overflow-hidden">
+              <img src="assets/img/portfolio/Screenshot 2025-03-07 151902.png" class="img-fluid" alt="TaskHarmony">
+              <div class="p-4">
+                <h4>TaskHarmony</h4>
+                <p><span class="lang-en">Design a work communication application.</span><span class="lang-ar">تصميم تطبيق تواصل للعمل.</span></p>
+                <a href="portfolio.html" class="btn btn-sm btn-accent mt-2"><span class="lang-en">View Details</span><span class="lang-ar">عرض التفاصيل</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-card p-0 overflow-hidden">
+              <img src="assets/img/portfolio/webchat-high-resolution-logo (1).png" class="img-fluid" alt="ChatLink">
+              <div class="p-4">
+                <h4>ChatLink</h4>
+                <p><span class="lang-en">Real-time communication and file sharing site.</span><span class="lang-ar">موقع للتواصل الفوري ومشاركة الملفات.</span></p>
+                <a href="portfolio.html" class="btn btn-sm btn-accent mt-2"><span class="lang-en">View Details</span><span class="lang-ar">عرض التفاصيل</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="portfolio.html" class="btn btn-outline-light px-5 py-3 rounded-pill">
+            <span class="lang-en">View All Projects</span><span class="lang-ar">مشاهدة جميع المشاريع</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
   </main>
 
   <footer id="footer" class="footer dark-background">
     <div class="container">
       <h3 class="sitename">Felopater Portfolio</h3>
-      <p>Passionate software engineer specializing in web development and problem-solving. Always eager to learn and innovate.</p>
+      <p>
+        <span class="lang-en">Passionate software engineer specializing in web development and problem-solving. Always eager to learn and innovate.</span>
+        <span class="lang-ar">مهندس برمجيات شغوف متخصص في تطوير الويب وحل المشكلات. يتطلع دائماً للتعلم والابتكار.</span>
+      </p>
       <div class="social-links d-flex justify-content-center">
+        <a href="https://github.com/7m3lsh7"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/felopater-remon-3a8631354"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Felopater Portfolio</strong> <span>All Rights Reserved</span>
-        </div>
-        <div class="credits">
+          <span>&copy; <span class="lang-en">Copyright</span><span class="lang-ar">حقوق الطبع</span></span> <strong class="px-1 sitename">Felopater</strong> <span><span class="lang-en">All Rights Reserved</span><span class="lang-ar">جميع الحقوق محفوظة</span></span>
         </div>
       </div>
     </div>
